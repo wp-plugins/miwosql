@@ -1,0 +1,360 @@
+/* Tabs */
+div.current {
+    clear   : both;
+    border  : 1px solid #CCCCCC;
+    padding : 10px 10px;
+}
+
+div.current dd {
+    padding : 0;
+    margin  : 0;
+}
+
+dl.tabs dt {
+    float       : left;
+    padding     : 4px 10px;
+    border      : 1px solid #CCCCCC;
+    margin-left : 3px;
+    background  : #E9E9E9;
+    color       : #666666;
+}
+
+dl.tabs dt.open {
+    background    : #F9F9F9;
+    border-bottom : 1px solid #F9F9F9;
+    z-index       : 100;
+    color         : #000000;
+}
+
+dt.tabs > span > h3 {
+    font-size : 13px;
+    margin    : 0;
+}
+
+dt.tabs > span > h3 > a {
+    text-decoration : none;
+    font-size       : 15px;
+    color           : #000000;
+}
+
+/* Tabs */
+
+/* Sliders */
+
+div.panel {
+    background    : none repeat scroll 0 0 white;
+    border        : 1px solid #DDDDDD;
+    border-radius : 4px;
+    margin-bottom : 3px;
+}
+
+div.panel h3 {
+    font-size : 1em;
+    margin    : 0px;
+}
+
+div.panel h3 a {
+    display         : block;
+    padding         : 5px 0px 5px 10px;
+    text-decoration : none;
+}
+
+/* Sliders */
+
+/* Admin List */
+tr.row1 {
+    background-color : #F9F9F9;
+}
+
+.widefat th input {
+    margin-left : 0px !important;
+}
+
+a.sortable, a.sortable:hover, a.sortable:active, a.sortable:focus {
+    color : #333333;
+}
+
+.miwi_search {
+    float     : right !important;
+    min-width : 355px !important;
+}
+
+.miwi_filter {
+    float        : left !important;
+    padding-left : 0px !important;
+    margin-left  : 0px !important;
+}
+
+/* Admin List */
+
+/* Tooltip */
+.tip-wrap {
+    max-width             : 200px;
+    padding               : 3px 8px;
+    color                 : #FFFFFF;
+    text-align            : center;
+    text-decoration       : none;
+    background-color      : #000000;
+    -webkit-border-radius : 4px;
+    -moz-border-radius    : 4px;
+    border-radius         : 4px;
+    z-index               : 100;
+}
+
+/* Tooltip */
+
+/* Configuration */
+.current .control-group {
+    margin-bottom : 18px;
+}
+
+.current .control-label {
+    display       : inline-block;
+    width         : auto;
+    padding-right : 5px;
+    text-align    : left;
+    float         : left;
+}
+
+.current .controls {
+    margin-left : 220px;
+}
+
+.minicolors .minicolors-input {
+    height : 30px !important;
+    width  : 96px !important;
+}
+
+/* Configuration */
+
+/* Button */
+.wp-core-ui .button.button-small, .wp-core-ui .button-group.button-small .button {
+    margin-top : 3px;
+}
+
+/* Button */
+
+/* Adminform */
+table.adminform {
+    background-color : #FFFFFF;
+    border           : solid 1px #D5D5D5;
+    width            : 100%;
+    border-collapse  : collapse;
+    margin           : 8px 0 10px 0;
+    margin-bottom    : 15px;
+}
+
+table.adminform th {
+    padding           : 6px 2px 4px 4px;
+    text-align        : left;
+    height            : 25px;
+    color             : #000000;
+    background-repeat : repeat;
+}
+
+table.adminform td {
+    padding    : 5px;
+    text-align : left;
+}
+
+input.button {
+    cursor : pointer;
+}
+
+legend {
+    color       : #146295;
+    font-weight : bold;
+}
+
+fieldset.adminform {
+    margin   : 10px;
+    overflow : hidden;
+    padding  : 5px;
+}
+
+fieldset.adminform {
+    border : 1px solid #CCCCCC;
+    margin : 0 10px 10px 10px;
+}
+
+.fltlft {
+    float : left;
+}
+
+.fltrt {
+    float : left;
+}
+
+table.wp-list-table td.text_center, table.wp-list-table th.text_center {
+    text-align : center;
+}
+
+table.wp-list-table td.text_left, table.wp-list-table th.text_left {
+    text-align : left;
+}
+
+table.wp-list-table td.text_right, table.wp-list-table th.text_right {
+    text-align : right;
+}
+
+table.admintable td.key2 {
+    background-color : #FFFFFF !important;
+}
+
+table.admintable {
+    background-color : inherit !important;
+}
+
+.pagination-start, .pagination-prev, .pagination-next, .pagination-end, .paging-input, .list-footer .limit {
+    display      : inline-block;
+    margin-right : 5px;
+}
+
+.list-footer {
+    display : inline-block;
+    width   : 100%;
+}
+
+ul.tablenav {
+    float       : right;
+    display     : inline-block;
+    cursor      : default;
+    height      : 30px;
+    line-height : 30px;
+    font-size   : 12px;
+}
+
+#editcell .tablenav > li {
+display : inline-block;
+}
+
+.pagination_link {
+    display     : inline-block;
+    color       : #AAAAAA;
+    background  : rgba(0, 0, 0, .05);
+    padding     : 0 10px 3px;
+    font-size   : 16px;
+    font-weight : 400;
+}
+
+.pagination_link.active:hover {
+    color      : #FFFFFF;
+    background : #2EA2CC;
+	cursor	   : pointer;
+}
+
+/* Adminform */
+
+/* -- PANE SLIDER STYLES ----------------------------- */
+.pane-sliders {
+    margin: 18px 0 0 0;
+    position:relative;
+}
+.pane-sliders .title {
+    margin: 0;
+    padding: 2px 2px 2px 5px;
+    color: #666;
+    cursor: pointer;
+}
+
+#content-pane {
+    margin: 8px 10px 15px 15px;
+}
+
+.pane-sliders .panel {
+    margin-bottom: 3px;
+    border:solid 1px #ccc;
+}
+
+.pane-sliders .panel h3 {
+    background: #fafafa;
+    color: #666;
+}
+
+.pane-sliders .content {
+    background: #fff;
+}
+
+.pane-sliders .adminlist {
+    border: 0 none;
+    font-size: 1em;
+}
+
+.pane-sliders .adminlist td {
+    border: 0 none;
+}
+
+.pane-toggler span {
+    background: transparent url(../images/j_arrow.png) 5px 50% no-repeat;
+    padding-left: 20px;
+}
+
+.pane-toggler-down span {
+    background: transparent url(../images/j_arrow_down.png) 5px 50% no-repeat;
+    padding-left: 20px;
+}
+
+.pane-toggler-down {
+    border-bottom: 1px solid #ccc;
+}
+
+h3.pane-toggler-down a:hover,
+h3.pane-toggler a:hover {
+    text-decoration: none;
+}
+
+.pane-slider.pane-hide {
+    display: none;
+}
+
+.pane-slider ol li {
+    list-style: none;
+    margin-left: -25px;
+    margin-top: 10px;
+}
+
+input#jformparams_link_titles1,
+input#jformparams_show_title1,
+input#jformparams_link_category1 {
+    margin-left: 13px;
+}
+
+div#position-icon.pane-sliders div.pane-down div.icon-wrapper {
+    margin: 5px 0 5px 0;
+}
+
+div#position-icon.pane-sliders div.pane-down .icon-wrapper .icon {
+    padding: 5px 0 5px 10px;
+    margin: 0;
+}
+
+div#position-icon.pane-sliders .icon {
+    background: #fff;
+}
+
+.mgrid span.uparrow {
+    background-image : url(../images/uparrow.png);
+}
+
+.mgrid span.downarrow {
+    background-image : url(../images/downarrow.png);
+}
+
+.mgrid span.state {
+    display 			: inline-block;
+    height				: 13px;
+	width				: 16px;
+	background-repeat	: no-repeat;
+}
+
+.mgrid span.text {
+    display : none;
+}
+
+/* Pro Members Message */
+.miwi_paid {
+    background-color: #FFFFE0;
+    border: 1px solid #000;
+    padding: 10px;
+}
+/* Pro Members Message */

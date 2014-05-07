@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="component" version="1.5.0" method="upgrade">
+	<name>MiwoSQL</name>
+	<author>Mijosoft LLC</author>
+	<creationDate>October 2012</creationDate>
+	<authorEmail>info@mijosoft.com</authorEmail>
+	<authorUrl>http://mijosoft.com</authorUrl>
+	<copyright>Copyright (C) Mijosoft LLC, mijosoft.com</copyright>
+	<license>GNU/GPL, http://www.gnu.org/licenses/gpl-2.0.html</license>
+	<version>1.1.1</version>
+	<description>MiwoSQL is a simple and fast database management component. It operates executing SQL queries so you don't have to access phpMyAdmin anymore.</description>
+	
+	<administration>
+		<menu img="components/com_miwosql/assets/images/icon-16-miwosql.png">MiwoSQL</menu>
+		<submenu>
+	    	<menu link="option=com_miwosql" img="components/com_miwosql/assets/images/icon-16-run.png">COM_MIJOSQL_RUN_QUERY</menu>
+	    	<menu link="option=com_miwosql&amp;controller=queries" img="components/com_miwosql/assets/images/icon-16-savedqueries.png">COM_MIJOSQL_SAVED_QUERIES</menu>
+	    </submenu>
+		
+		<files folder="admin">
+			<filename>access.xml</filename>
+			<filename>config.xml</filename>
+			<filename>index.html</filename>
+			<filename>install.sql</filename>
+			<filename>miwosql.php</filename>
+			<filename>toolbar.php</filename>
+			<folder>assets</folder>
+			<folder>controllers</folder>
+			<folder>helpers</folder>
+			<folder>models</folder>
+			<folder>mvc</folder>
+			<folder>tables</folder>
+			<folder>views</folder>
+		</files>
+		
+		<languages folder="languages">
+			<language tag="en-GB">en-GB.com_miwosql.ini</language>
+			<language tag="en-GB">en-GB.com_miwosql.sys.ini</language>
+			<language tag="en-GB">en-GB.com_miwosql.menu.ini</language>
+		</languages>
+	</administration>
+	
+	<installfile>install.miwosql.php</installfile>
+	
+	<install>
+		<sql>
+			<file charset="utf8" driver="mysql">install.sql</file>
+			<file charset="utf8" driver="mysqli">install.sql</file>
+		</sql>
+	</install>
+</install>
