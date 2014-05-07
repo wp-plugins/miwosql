@@ -14,6 +14,8 @@ MiwoSQL is a simple and fast database management plugin that operates by executi
 
 MiwoSQL is a simple and fast database management plugin. It operates executing SQL queries so you don't have to access phpMyAdmin anymore. The limit of MiwoSQL is your SQL knowledge thanks to it's working method; query execution.
 
+= Features =
+
 * Displaying, creating, editing and deleting records
 * Execution of any SQL query
 * Execution of multiple queries at once, using the ; char as separator
@@ -37,9 +39,7 @@ Use the WordPress.org forums for community support. We cannot offer efficient su
 
 == Screenshots ==
 
-Screenshots are located in the following page:
-
-[http://miwisoft.com/miwosql](http://miwisoft.com/wordpress-plugins/miwosql-wordpress-database-manager#screenshots)
+Screenshots are located in the following page: [http://miwisoft.com/miwosql](http://miwisoft.com/wordpress-plugins/miwosql-wordpress-database-manager#screenshots)
 
 == Installation ==
 
@@ -57,6 +57,4 @@ We do not collect information about you or your server.
 
 == Changelog ==
 
-Changelog is available in the following page:
-
-[http://miwisoft.com/miwosql](http://miwisoft.com/wordpress-plugins/miwosql-wordpress-database-manager#changelog)
+Changelog is available in the following page: [http://miwisoft.com/miwosql](http://miwisoft.com/wordpress-plugins/miwosql-wordpress-database-manager#changelog)
