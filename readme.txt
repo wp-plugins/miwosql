@@ -12,7 +12,7 @@ MiwoSQL is a simple and fast database management plugin that operates by executi
 
 == Description ==
 
-MiwoSQL is a simple and fast database management plugin. It operates executing SQL queries so you don't have to access phpMyAdmin anymore. The limit of MiwoSQL is your SQL knowledge thanks to it's working method; query execution.
+MiwoSQL is a simple and fast database management plugin. It operates executing SQL queries so you don't have to access phpMyAdmin anymore. The limit of MiwoSQL is your SQL knowledge thanks to it's working method; SQL query execution.
 
 = Features =
 
