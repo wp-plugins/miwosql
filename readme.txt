@@ -1,4 +1,4 @@
-=== MiwoSQL - WordPress Database Manager ===
+=== MiwoSQL - Database & SQL Manager ===
 Contributors: miwisoft
 Tags: sql, database, manager, query
 Donate link: http://miwisoft.com

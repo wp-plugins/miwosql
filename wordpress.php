@@ -210,6 +210,11 @@ class MWordpress {
 	}
 	
 	public function preDisplayAdmin($args = null) {
+		$page = MRequest::getCmd('page');
+		if ($page != $this->context) {
+			return;
+		}
+
 		MRequest::setVar('option', 'com_'.$this->context);
 
 		$this->app->route();
