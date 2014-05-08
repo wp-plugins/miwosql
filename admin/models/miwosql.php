@@ -294,7 +294,7 @@ class MiwosqlModelMiwosql extends MiwosqlModel {
 						$body .= '</a>';
 						$body .= '&nbsp;';
 						$body .= '<a href="#" onclick="if (confirm(\'Are you sure you want to delete this record?\')) {this.href=\''.$delete_link.'\'};">';
-							$body .= '<img border="0" src="'.MURL_MIWOSQL.'/admin/assets/images/icon-16-delete.png'.' alt="'.MText::_('COM_MIWOSQL_DELETE').'" title="'.MText::_('COM_MIWOSQL_DELETE').'" />';
+							$body .= '<img border="0" src="'.MURL_MIWOSQL.'/admin/assets/images/icon-16-delete.png'.'" alt="'.MText::_('COM_MIWOSQL_DELETE').'" title="'.MText::_('COM_MIWOSQL_DELETE').'" />';
 						$body .= '</a>';
 					$body .= '</td>';
 				}

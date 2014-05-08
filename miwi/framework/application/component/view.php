@@ -79,6 +79,8 @@ class MView extends MObject {
         }
 
         $this->baseurl = MUri::base(true);
+		
+		MHtml::_('behavior.framework');
     }
 
     public function display($tpl = null) {
