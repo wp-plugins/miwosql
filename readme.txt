@@ -1,5 +1,5 @@
 === MiwoSQL - Database & SQL Manager ===
-Contributors: miwisoft
+Contributors: miwisoft, gilbertlici
 Tags: sql, database, manager, query
 Donate link: http://miwisoft.com
 Requires at least: 3.5
