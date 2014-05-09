@@ -3,10 +3,10 @@ Contributors: miwisoft, gilbertlici
 Tags: sql, database, manager, query
 Donate link: http://miwisoft.com
 Requires at least: 3.5
-Tested up to: 3.9
+Tested up to: 5
 Stable tag: trunk
-License: GPLv2
-License URI: http://www.gnu.org/licenses/gpl-2.0.html
+License: GPLv3
+License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 MiwoSQL is a simple and fast database management plugin that operates by executing SQL queries from the back-end of WordPress.
 
