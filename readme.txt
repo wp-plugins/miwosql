@@ -39,7 +39,9 @@ Use the WordPress.org forums for community support. We cannot offer efficient su
 
 == Screenshots ==
 
-Screenshots are located in the following page: [http://miwisoft.com/miwosql](http://miwisoft.com/wordpress-plugins/miwosql-wordpress-database-manager#screenshots)
+1. **Run Query** - Query run screen.
+2. **Edit Row** - Result edit and save screen.
+3. **Save Query** - Screen to save query and run later.
 
 == Installation ==
 

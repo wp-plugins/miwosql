@@ -286,7 +286,7 @@ class MDocumentHTML extends MDocument {
 
 	protected function _loadTemplate($directory, $filename)
 	{
-		//		$component	= JApplicationHelper::getComponentName();
+		//		$component	= MApplicationHelper::getComponentName();
 
 		$contents = '';
 

@@ -23,7 +23,7 @@ class MFormFieldColor extends MFormField {
         $position = ' data-position="' . $this->position . '"';
 
         $onchange  = !empty($this->onchange) ? ' onchange="' . $this->onchange . '"' : '';
-        $class     = $this->class;
+	    $class     = (string) $this->element['class'];
         $required  = $this->required ? ' required aria-required="true"' : '';
         $disabled  = $this->disabled ? ' disabled' : '';
         $autofocus = $this->autofocus ? ' autofocus' : '';

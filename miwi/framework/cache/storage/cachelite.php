@@ -112,7 +112,7 @@ class MCacheStorageCachelite extends MCacheStorage {
 	}
 
 	public function clean($group, $mode = null) {
-		jimport('joomla.filesystem.folder');
+		mimport('framework.filesystem.folder');
 
 		if (trim($group) == '') {
 			$clmode = 'notgroup';

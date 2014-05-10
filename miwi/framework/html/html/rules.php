@@ -10,7 +10,7 @@ defined('MIWI') or die('MIWI');
 
 abstract class MHtmlRules {
 
-    public static function assetFormWidget($actions, $assetId = null, $parent = null, $control = 'jform[rules]', $idPrefix = 'jform_rules') {
+    public static function assetFormWidget($actions, $assetId = null, $parent = null, $control = 'mform[rules]', $idPrefix = 'mform_rules') {
         $images = self::_getImagesArray();
 
         // Get the user groups.

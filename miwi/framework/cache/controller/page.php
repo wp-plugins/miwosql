@@ -89,7 +89,7 @@ class MCacheControllerPage extends MCacheController {
 	}
 
 	protected function _makeId() {
-		return JCache::makeId();
+		return MCache::makeId();
 	}
 
 	protected function _noChange() {

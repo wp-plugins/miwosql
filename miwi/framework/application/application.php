@@ -437,13 +437,13 @@ class MApplication extends MObject {
                     // Return the error.
                     switch ($authorisation->status) {
                         case MAuthentication::STATUS_EXPIRED:
-                            return MError::raiseWarning('102002', MText::_('JLIB_LOGIN_EXPIRED'));
+                            return MError::raiseWarning('102002', MText::_('MLIB_LOGIN_EXPIRED'));
                             break;
                         case MAuthentication::STATUS_DENIED:
-                            return MError::raiseWarning('102003', MText::_('JLIB_LOGIN_DENIED'));
+                            return MError::raiseWarning('102003', MText::_('MLIB_LOGIN_DENIED'));
                             break;
                         default:
-                            return MError::raiseWarning('102004', MText::_('JLIB_LOGIN_AUTHORISATION'));
+                            return MError::raiseWarning('102004', MText::_('MLIB_LOGIN_AUTHORISATION'));
                             break;
                     }
                 }
@@ -610,7 +610,7 @@ class MApplication extends MObject {
     protected function _createConfiguration($file) {
         MLoader::register('MConfig', $file);
 
-        // Create the JConfig object.
+        // Create the MConfig object.
         $config = new MConfig;
 
         // Get the global configuration object.
@@ -688,11 +688,11 @@ class MApplication extends MObject {
             $this->template = new stdClass();
             $this->template->template = $template;
 
-            if ($styleParams instanceof JRegistry) {
+            if ($styleParams instanceof MRegistry) {
                 $this->template->params = $styleParams;
             }
             else {
-                $this->template->params = new JRegistry($styleParams);
+                $this->template->params = new MRegistry($styleParams);
             }
         }
     }

@@ -70,7 +70,7 @@ class MTableUser extends MTable {
 	public function bind($array, $ignore = '') {
 		if (key_exists('params', $array) && is_array($array['params']))
 		{
-			$registry = new JRegistry;
+			$registry = new MRegistry;
 			$registry->loadArray($array['params']);
 			$array['params'] = (string) $registry;
 		}
@@ -82,7 +82,7 @@ class MTableUser extends MTable {
 		if ($return && !empty($this->groups))
 		{
 			// Set the group ids.
-			JArrayHelper::toInteger($this->groups);
+			MArrayHelper::toInteger($this->groups);
 
 			// Get the titles for the user groups.
 			$query = $this->_db->getQuery(true);

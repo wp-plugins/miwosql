@@ -226,7 +226,7 @@ class MFormFieldRules extends MFormField {
         }
         $html[] = '</div></div>';
 
-        $js = "window.addEvent('domready', function(){ new Fx.Accordion($$('div#permissions-sliders.pane-sliders .panel h3.pane-toggler'),"
+        $js = "jQuery(document).ready(function () { new Fx.Accordion($$('div#permissions-sliders.pane-sliders .panel h3.pane-toggler'),"
             . "$$('div#permissions-sliders.pane-sliders .panel div.pane-slider'), {onActive: function(toggler, i) {toggler.addClass('pane-toggler-down');"
             . "toggler.removeClass('pane-toggler');i.addClass('pane-down');i.removeClass('pane-hide');Cookie.write('jpanesliders_permissions-sliders"
             . $component

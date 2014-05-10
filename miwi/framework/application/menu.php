@@ -138,7 +138,7 @@ class MMenu extends MObject {
 			return $menu->params;
 		}
 		else {
-			return new JRegistry;
+			return new MRegistry;
 		}
 	}
 

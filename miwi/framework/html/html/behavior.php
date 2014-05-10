@@ -16,7 +16,7 @@ abstract class MHtmlBehavior {
         $type = $extras ? 'more' : 'core';
 
         // Only load once
-        if (!empty(static::$loaded[__METHOD__][$type])) {
+        if (!empty(self::$loaded[__METHOD__][$type])) {
             return;
         }
 
@@ -26,22 +26,22 @@ abstract class MHtmlBehavior {
             $debug = $config->get('debug');
         }
 
-        if ($type != 'core' && empty(static::$loaded[__METHOD__]['core'])) {
-            static::framework(false, $debug);
+        if ($type != 'core' && empty(self::$loaded[__METHOD__]['core'])) {
+            self::framework(false, $debug);
         }
 
         MHtml::_('script', 'system/mootools-' . $type . '.js', false, true, false, false, $debug);
         MHtml::_('jquery.framework');
         MHtml::_('script', 'system/core.js', false, true);
 
-        static::$loaded[__METHOD__][$type] = true;
+        self::$loaded[__METHOD__][$type] = true;
 
         return;
     }
 
     public static function caption($selector = 'img.caption') {
         // Only load once
-        if (isset(static::$loaded[__METHOD__][$selector])) {
+        if (isset(self::$loaded[__METHOD__][$selector])) {
             return;
         }
 
@@ -58,17 +58,17 @@ abstract class MHtmlBehavior {
         );
 
         // Set static array
-        static::$loaded[__METHOD__][$selector] = true;
+        self::$loaded[__METHOD__][$selector] = true;
     }
 
     public static function formvalidation() {
         // Only load once
-        if (isset(static::$loaded[__METHOD__])) {
+        if (isset(self::$loaded[__METHOD__])) {
             return;
         }
 
         // Include MooTools framework
-        static::framework();
+        self::framework();
 
         // Include jQuery Framework
         MHtml::_('jquery.framework');
@@ -78,12 +78,12 @@ abstract class MHtmlBehavior {
 
         MHtml::_('script', 'system/punycode.js', false, true);
         MHtml::_('script', 'system/validate.js', false, true);
-        static::$loaded[__METHOD__] = true;
+        self::$loaded[__METHOD__] = true;
     }
 
     public static function switcher() {
         // Only load once
-        if (isset(static::$loaded[__METHOD__])) {
+        if (isset(self::$loaded[__METHOD__])) {
             return;
         }
 
@@ -92,29 +92,29 @@ abstract class MHtmlBehavior {
 
         MHtml::_('script', 'system/switcher.js', true, true);
 
-        static::$loaded[__METHOD__] = true;
+        self::$loaded[__METHOD__] = true;
     }
 
     public static function combobox() {
-        if (isset(static::$loaded[__METHOD__])) {
+        if (isset(self::$loaded[__METHOD__])) {
             return;
         }
         // Include MooTools framework
-        static::framework();
+        self::framework();
 
         MHtml::_('script', 'system/combobox.js', true, true);
-        static::$loaded[__METHOD__] = true;
+        self::$loaded[__METHOD__] = true;
     }
 
     public static function tooltip($selector = '.hasTip', $params = array()) {
         $sig = md5(serialize(array($selector, $params)));
 
-        if (isset(static::$loaded[__METHOD__][$sig])) {
+        if (isset(self::$loaded[__METHOD__][$sig])) {
             return;
         }
 
         // Include MooTools framework
-        static::framework(true);
+        self::framework(true);
 
         // Setup options object
         $opt['maxTitleChars'] = (isset($params['maxTitleChars']) && ($params['maxTitleChars'])) ? (int)$params['maxTitleChars'] : 50;
@@ -149,7 +149,7 @@ abstract class MHtmlBehavior {
         );
 
         // Set static array
-        static::$loaded[__METHOD__][$sig] = true;
+        self::$loaded[__METHOD__][$sig] = true;
 
         return;
     }
@@ -158,9 +158,9 @@ abstract class MHtmlBehavior {
         $document = MFactory::getDocument();
 
         // Load the necessary files if they haven't yet been loaded
-        if (!isset(static::$loaded[__METHOD__])) {
+        if (!isset(self::$loaded[__METHOD__])) {
             // Include MooTools framework
-            static::framework(true);
+            self::framework(true);
 
             // Load the MavaScript and css
             MHtml::_('script', 'system/modal.js', true, true);
@@ -169,7 +169,7 @@ abstract class MHtmlBehavior {
 
         $sig = md5(serialize(array($selector, $params)));
 
-        if (isset(static::$loaded[__METHOD__][$sig])) {
+        if (isset(self::$loaded[__METHOD__][$sig])) {
             return;
         }
 
@@ -212,14 +212,14 @@ abstract class MHtmlBehavior {
                 );
 
         // Set static array
-        static::$loaded[__METHOD__][$sig] = true;
+        self::$loaded[__METHOD__][$sig] = true;
 
         return;
     }
 
     public static function multiselect($id = 'adminForm') {
         // Only load once
-        if (isset(static::$loaded[__METHOD__][$id])) {
+        if (isset(self::$loaded[__METHOD__][$id])) {
             return;
         }
 
@@ -236,19 +236,19 @@ abstract class MHtmlBehavior {
         );
 
         // Set static array
-        static::$loaded[__METHOD__][$id] = true;
+        self::$loaded[__METHOD__][$id] = true;
 
         return;
     }
 
     public static function tree($id, $params = array(), $root = array()) {
         // Include MooTools framework
-        static::framework();
+        self::framework();
 
         MHtml::_('script', 'system/mootree.js', true, true, false, false);
         MHtml::_('stylesheet', 'system/mootree.css', array(), true);
 
-        if (isset(static::$loaded[__METHOD__][$id])) {
+        if (isset(self::$loaded[__METHOD__][$id])) {
             return;
         }
 
@@ -290,14 +290,14 @@ abstract class MHtmlBehavior {
         $document->addScriptDeclaration($js);
 
         // Set static array
-        static::$loaded[__METHOD__][$id] = true;
+        self::$loaded[__METHOD__][$id] = true;
 
         return;
     }
 
     public static function calendar() {
         // Only load once
-        if (isset(static::$loaded[__METHOD__])) {
+        if (isset(self::$loaded[__METHOD__])) {
             return;
         }
 
@@ -308,18 +308,18 @@ abstract class MHtmlBehavior {
         MHtml::_('script', $tag . '/calendar.js', false, true);
         MHtml::_('script', $tag . '/calendar-setup.js', false, true);
 
-        $translation = static::calendartranslation();
+        $translation = self::calendartranslation();
 
         if ($translation) {
             $document->addScriptDeclaration($translation);
         }
 
-        static::$loaded[__METHOD__] = true;
+        self::$loaded[__METHOD__] = true;
     }
 
     public static function colorpicker() {
         // Only load once
-        if (isset(static::$loaded[__METHOD__])) {
+        if (isset(self::$loaded[__METHOD__])) {
             return;
         }
 
@@ -341,12 +341,12 @@ abstract class MHtmlBehavior {
 			"
         );
 
-        static::$loaded[__METHOD__] = true;
+        self::$loaded[__METHOD__] = true;
     }
 
     public static function simplecolorpicker() {
         // Only load once
-        if (isset(static::$loaded[__METHOD__])) {
+        if (isset(self::$loaded[__METHOD__])) {
             return;
         }
 
@@ -362,12 +362,12 @@ abstract class MHtmlBehavior {
 			"
         );
 
-        static::$loaded[__METHOD__] = true;
+        self::$loaded[__METHOD__] = true;
     }
 
     public static function keepalive() {
         // Only load once
-        if (isset(static::$loaded[__METHOD__])) {
+        if (isset(self::$loaded[__METHOD__])) {
             return;
         }
 
@@ -395,7 +395,7 @@ abstract class MHtmlBehavior {
         $script .= ');';
 
         $document->addScriptDeclaration($script);
-        static::$loaded[__METHOD__] = true;
+        self::$loaded[__METHOD__] = true;
 
         return;
     }
@@ -403,7 +403,7 @@ abstract class MHtmlBehavior {
     public static function highlighter(array $terms, $start = 'highlighter-start', $end = 'highlighter-end', $className = 'highlight', $tag = 'span') {
         $sig = md5(serialize(array($terms, $start, $end)));
 
-        if (isset(static::$loaded[__METHOD__][$sig])) {
+        if (isset(self::$loaded[__METHOD__][$sig])) {
             return;
         }
 
@@ -434,19 +434,19 @@ abstract class MHtmlBehavior {
 			});
 		");
 
-        static::$loaded[__METHOD__][$sig] = true;
+        self::$loaded[__METHOD__][$sig] = true;
 
         return;
     }
 
     public static function noframes() {
         // Only load once
-        if (isset(static::$loaded[__METHOD__])) {
+        if (isset(self::$loaded[__METHOD__])) {
             return;
         }
 
         // Include MooTools framework
-        static::framework();
+        self::framework();
 
         // Include jQuery
         MHtml::_('jquery.framework');
@@ -459,7 +459,7 @@ abstract class MHtmlBehavior {
 
         MFactory::getApplication()->setHeader('X-Frames-Options', 'SAMEORIGIN');
 
-        static::$loaded[__METHOD__] = true;
+        self::$loaded[__METHOD__] = true;
     }
 
     protected static function _getJSObject($array = array()) {
@@ -478,7 +478,7 @@ abstract class MHtmlBehavior {
 
         $jsscript = 1;
 
-        // To keep the code simple here, run strings through JText::_() using array_map()
+        // To keep the code simple here, run strings through MText::_() using array_map()
         $callback = array('MText', '_');
         $weekdays_full = array_map(
             $callback, array(

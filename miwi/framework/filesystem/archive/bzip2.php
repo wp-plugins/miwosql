@@ -8,7 +8,7 @@
 
 defined('MIWI') or die('MIWI');
 
-jimport('framework.filesystem.stream');
+mimport('framework.filesystem.stream');
 
 class MArchiveBzip2 extends MObject {
 

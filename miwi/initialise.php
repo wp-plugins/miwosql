@@ -35,7 +35,7 @@ if (isset($_SERVER['HTTP_HOST'])) {
 
 	// If an application flags it doesn't want this, adhere to that.
 	if (!defined('_MREQUEST_NO_CLEAN') && (bool) ini_get('register_globals')) {
-		MRequest::clean();
+		//MRequest::clean();  // miwisoft ticket 110
 	}
 }
 

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<versions>
+	<version name="Miwi">
+		<release>1.0.0</release>
+		<status>Stable</status>
+		<build></build>
+		<codename>Miwisoft</codename>
+		<date>28-May-2014</date>
+		<time>14:30</time>
+		<zone>GMT</zone>
+		<copyright>Copyright (C) 2009 - 2014 Miwisoft LLC.</copyright>
+		<url></url>
+	</version>
+	<version name="Framework">
+		<release>1.0.1</release>
+		<status>Stable</status>
+		<build></build>
+		<codename>Start</codename>
+		<date>28-May-2014</date>
+		<time>14:30</time>
+		<zone>GMT</zone>
+		<copyright>Copyright (C) 2009 - 2014 Miwisoft LLC.</copyright>
+		<url></url>
+	</version>
+</versions>

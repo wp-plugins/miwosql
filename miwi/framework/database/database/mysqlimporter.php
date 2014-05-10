@@ -348,7 +348,7 @@ class MDatabaseImporterMySQL {
         }
     }
 
-    public function setDbo(JDatabaseMySQL $db) {
+    public function setDbo(MDatabaseMySQL $db) {
         $this->db = $db;
 
         return $this;

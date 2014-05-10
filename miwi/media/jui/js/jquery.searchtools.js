@@ -249,37 +249,37 @@
 		// List container management
 		hideList: function () {
 			this.hideContainer(this.listContainer);
-			this.listButton.removeClass('btn-primary');
+			this.listButton.removeClass('button-primary');
 		},
 		showList: function () {
 			this.showContainer(this.listContainer);
-			this.listButton.addClass('btn-primary');
+			this.listButton.addClass('button-primary');
 		},
 		toggleList: function () {
 			this.toggleContainer(this.listContainer);
 
 			if (this.listContainer.hasClass('shown')) {
-				this.listButton.addClass('btn-primary');
+				this.listButton.addClass('button-primary');
 			} else {
-				this.listButton.removeClass('btn-primary');
+				this.listButton.removeClass('button-primary');
 			}
 		},
 		// Filters container management
 		hideFilters: function () {
 			this.hideContainer(this.filterContainer);
-			this.filterButton.removeClass('btn-primary');
+			this.filterButton.removeClass('button-primary');
 		},
 		showFilters: function () {
 			this.showContainer(this.filterContainer);
-			this.filterButton.addClass('btn-primary');
+			this.filterButton.addClass('button-primary');
 		},
 		toggleFilters: function () {
 			this.toggleContainer(this.filterContainer);
 
 			if (this.filterContainer.hasClass('shown')) {
-				this.filterButton.addClass('btn-primary');
+				this.filterButton.addClass('button-primary');
 			} else {
-				this.filterButton.removeClass('btn-primary');
+				this.filterButton.removeClass('button-primary');
 			}
 		},
 		toggleDirection: function () {

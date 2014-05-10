@@ -190,7 +190,7 @@ var MFormValidator = function($) {
 };
 
 document.formvalidator = null;
-window.addEvent('domready', function() {
+jQuery(document).ready(function () {
 	document.formvalidator = new MFormValidator(jQuery.noConflict());
 	document.formvalidator.initialize();
 });

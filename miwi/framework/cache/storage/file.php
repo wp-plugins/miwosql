@@ -228,7 +228,7 @@ class MCacheStorageFile extends MCacheStorage {
 
 	protected function _deleteFolder($path) {
 		if (!$path || !is_dir($path) || empty($this->_root)) {
-			MError::raiseWarning(500, 'MCacheStorageFile::_deleteFolder ' . MText::_('JLIB_FILESYSTEM_ERROR_DELETE_BASE_DIRECTORY'));
+			MError::raiseWarning(500, 'MCacheStorageFile::_deleteFolder ' . MText::_('MLIB_FILESYSTEM_ERROR_DELETE_BASE_DIRECTORY'));
 			return false;
 		}
 
@@ -237,7 +237,7 @@ class MCacheStorageFile extends MCacheStorage {
 		$pos = strpos($path, $this->_cleanPath($this->_root));
 
 		if ($pos === false || $pos > 0) {
-			MError::raiseWarning(500, 'MCacheStorageFile::_deleteFolder' . MText::sprintf('JLIB_FILESYSTEM_ERROR_PATH_IS_NOT_A_FOLDER', $path));
+			MError::raiseWarning(500, 'MCacheStorageFile::_deleteFolder' . MText::sprintf('MLIB_FILESYSTEM_ERROR_PATH_IS_NOT_A_FOLDER', $path));
 			return false;
 		}
 
@@ -258,7 +258,7 @@ class MCacheStorageFile extends MCacheStorage {
 				}
 				else {
 					$filename = basename($file);
-					MError::raiseWarning('SOME_ERROR_CODE', 'MCacheStorageFile::_deleteFolder' . MText::sprintf('JLIB_FILESYSTEM_DELETE_FAILED', $filename));
+					MError::raiseWarning('SOME_ERROR_CODE', 'MCacheStorageFile::_deleteFolder' . MText::sprintf('MLIB_FILESYSTEM_DELETE_FAILED', $filename));
 					return false;
 				}
 			}
@@ -281,7 +281,7 @@ class MCacheStorageFile extends MCacheStorage {
 			$ret = true;
 		}
 		else {
-			MError::raiseWarning('SOME_ERROR_CODE', 'MCacheStorageFile::_deleteFolder' . MText::sprintf('JLIB_FILESYSTEM_ERROR_FOLDER_DELETE', $path));
+			MError::raiseWarning('SOME_ERROR_CODE', 'MCacheStorageFile::_deleteFolder' . MText::sprintf('MLIB_FILESYSTEM_ERROR_FOLDER_DELETE', $path));
 			$ret = false;
 		}
 		return $ret;
@@ -307,7 +307,7 @@ class MCacheStorageFile extends MCacheStorage {
 		$path = $this->_cleanPath($path);
 
 		if (!is_dir($path)) {
-			MError::raiseWarning(21, 'MCacheStorageFile::_filesInFolder' . MText::sprintf('JLIB_FILESYSTEM_ERROR_PATH_IS_NOT_A_FOLDER', $path));
+			MError::raiseWarning(21, 'MCacheStorageFile::_filesInFolder' . MText::sprintf('MLIB_FILESYSTEM_ERROR_PATH_IS_NOT_A_FOLDER', $path));
 			return false;
 		}
 
@@ -361,7 +361,7 @@ class MCacheStorageFile extends MCacheStorage {
 		$path = $this->_cleanPath($path);
 
 		if (!is_dir($path)) {
-			MError::raiseWarning(21, 'MCacheStorageFile::_folders' . MText::sprintf('JLIB_FILESYSTEM_ERROR_PATH_IS_NOT_A_FOLDER', $path));
+			MError::raiseWarning(21, 'MCacheStorageFile::_folders' . MText::sprintf('MLIB_FILESYSTEM_ERROR_PATH_IS_NOT_A_FOLDER', $path));
 			return false;
 		}
 

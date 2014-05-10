@@ -272,7 +272,7 @@ class MController extends MObject {
                 // We have one, so set it and lets do the check
                 $task = $this->_acoSectionValue;
             }
-            // Get the JUser object for the current user and return the authorization boolean
+            // Get the MUser object for the current user and return the authorization boolean
             $user = MFactory::getUser();
 
             return $user->authorise($this->_acoSection, $task);

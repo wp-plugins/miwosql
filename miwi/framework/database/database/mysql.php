@@ -43,7 +43,7 @@ class MDatabaseMySQL extends MDatabase {
         // Attempt to connect to the server.
         if (!($this->connection = @ mysql_connect($options['host'], $options['user'], $options['password'], true))) {
 
-            // Legacy error handling switch based on the JError::$legacy switch.
+            // Legacy error handling switch based on the MError::$legacy switch.
             // @deprecated  12.1
             if (MError::$legacy) {
                 $this->errorNum = 2;
@@ -308,9 +308,9 @@ class MDatabaseMySQL extends MDatabase {
         }
 
         if (!mysql_select_db($database, $this->connection)) {
-            // Legacy error handling switch based on the JError::$legacy switch.
+            // Legacy error handling switch based on the MError::$legacy switch.
             // @deprecated  12.1
-            if (JError::$legacy) {
+            if (MError::$legacy) {
                 $this->errorNum = 3;
                 $this->errorMsg = MText::_('MLIB_DATABASE_ERROR_DATABASE_CONNECT');
 

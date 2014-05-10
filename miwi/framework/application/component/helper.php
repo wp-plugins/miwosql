@@ -78,7 +78,7 @@ abstract class MComponentHelper {
 		$path = MPATH_COMPONENT . '/' . $file . '.php';
 
 		// If component is disabled throw error
-		if (!static::isEnabled($option) || !file_exists($path)) {
+		if (!self::isEnabled($option) || !file_exists($path)) {
 			throw new Exception(MText::_('MLIB_APPLICATION_ERROR_COMPONENT_NOT_FOUND'), 404);
 		}
 
@@ -89,7 +89,7 @@ abstract class MComponentHelper {
 		$contents = null;
 
 		// Execute the component.
-		$contents = static::executeComponent($path);
+		$contents = self::executeComponent($path);
 
 		// Revert the scope
 		$app->scope = $scope;

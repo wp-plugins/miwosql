@@ -46,7 +46,7 @@ class MCacheStorage {
 			$conf = MFactory::getConfig();
 			$handler = $conf->get('cache_handler');
 			if (empty($handler)) {
-				return MError::raiseWarning(500, MText::_('JLIB_CACHE_ERROR_CACHE_HANDLER_NOT_SET'));
+				return MError::raiseWarning(500, MText::_('MLIB_CACHE_ERROR_CACHE_HANDLER_NOT_SET'));
 			}
 		}
 
@@ -64,7 +64,7 @@ class MCacheStorage {
 				include_once $path;
 			}
 			else {
-				return MError::raiseWarning(500, MText::sprintf('JLIB_CACHE_ERROR_CACHE_STORAGE_LOAD', $handler));
+				return MError::raiseWarning(500, MText::sprintf('MLIB_CACHE_ERROR_CACHE_STORAGE_LOAD', $handler));
 			}
 		}
 

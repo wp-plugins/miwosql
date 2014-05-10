@@ -487,7 +487,7 @@ class MHtml {
         return '<span class="' . $class . '" title="' . $tooltip . '">' . $tip . '</span>';
     }
 
-    public static function calendar($value, $name, $id, $format = '%Y-%m-%d', $attribs = null) {
+    public static function calendar($value, $name, $id, $format = 'Y-m-d', $attribs = null) {
         static $done;
 
         if ($done === null) {
@@ -591,7 +591,7 @@ class MHtml {
             }
             else
             {
-                $elements[] = $key . ': ' . static::getJSObject(is_object($v) ? get_object_vars($v) : $v);
+                $elements[] = $key . ': ' . self::getJSObject(is_object($v) ? get_object_vars($v) : $v);
             }
         }
 
