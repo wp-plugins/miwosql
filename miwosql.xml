@@ -7,7 +7,7 @@
 	<authorUrl>http://miwisoft.com</authorUrl>
 	<copyright>Copyright (C) Miwisoft LLC, miwisoft.com</copyright>
 	<license>GNU/GPL, http://www.gnu.org/licenses/gpl-2.0.html</license>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<description>MiwoSQL is a simple and fast database management component. It operates executing SQL queries so you don't have to access phpMyAdmin anymore.</description>
 	
 	<administration>

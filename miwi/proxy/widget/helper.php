@@ -30,7 +30,7 @@ class MWidgetHelper extends MObject {
 				define($class_name, $class_name);
 			}
 
-            eval("class $class_name extends MWidget {};");
+            eval('class '.$class_name.' extends MWidget {public $class_name = '.$class_name.';};');
 
             add_action('widgets_init', create_function('', 'return register_widget('.$class_name.');'));
         }

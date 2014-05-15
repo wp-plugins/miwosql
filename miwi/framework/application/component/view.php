@@ -81,6 +81,9 @@ class MView extends MObject {
         $this->baseurl = MUri::base(true);
 		
 		MHtml::_('behavior.framework');
+	    if (MFactory::getApplication()->isAdmin()) {
+		    MHtml::_('behavior.modal');
+	    }
     }
 
     public function display($tpl = null) {

@@ -10,9 +10,7 @@ defined('MIWI') or die('MIWI');
 class MWidget extends WP_Widget {
 
 	public function __construct() {
-		$called_class = get_called_class();
-
-        $this->module = str_replace('_widget', '', $called_class);
+        $this->module = str_replace('_widget', '', $this->class_name);
 
         $xml_file = MPATH_MIWI.'/modules/'.$this->module.'/'.$this->module.'.xml';
         $xml = simplexml_load_file($xml_file, 'SimpleXMLElement');
@@ -29,7 +27,7 @@ class MWidget extends WP_Widget {
         }
 		
 		$widget_ops = array('classname' => $widget_name, 'description' => $widget_desc);
-		$this->WP_Widget($called_class, $widget_name, $widget_ops);
+		$this->WP_Widget($this->class_name, $widget_name, $widget_ops);
 	}
 
 	public function form($instance) {
