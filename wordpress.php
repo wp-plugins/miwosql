@@ -36,10 +36,16 @@ class MWordpress {
 		if ($this->app->isAdmin()) {
 			add_action('admin_menu', array($this, 'menu'));
 			add_action('admin_init', array($this, 'preDisplayAdmin'));
+			$pack = strtoupper($this->context).'_PACK';
+			if (constant($pack) == 'pro') {
+				add_action('admin_footer', array($this, 'shortcodePopup'));
+			}
             add_action('admin_enqueue_scripts', array($this,'safelyAddScript'),999);
             add_action('admin_enqueue_scripts', array($this,'safelyAddStylesheet'),999);
 		}
 		else {
+			add_filter('rewrite_rules_array',array($this, 'miwiFrontendRewrite'));
+            add_action('wp_loaded',array($this, 'miwiFlushRewriteRules'));
 			add_action('parse_query', array($this, 'parse'));
 			add_action('wp_head', array($this, 'metadata'));
 			add_action('get_header', array($this, 'preDisplay'));
@@ -52,13 +58,19 @@ class MWordpress {
 		add_action('wp_ajax_'.$this->context, array($this, 'ajax'));
 		add_action('wp_ajax_nopriv_'.$this->context, array($this, 'ajax'));
 
-		add_shortcode($this->context, array($this, 'shortcode'));
+        #search hooks
+        add_filter('the_posts', array($this, 'search'), 10, 2);
+		add_filter('post_link', array($this, 'fixSearchLink'), 10, 2);
+		add_filter('get_edit_post_link', array($this, 'fixEditPostLink'), 10, 2);
+
+        #shortcode hooks
+        add_shortcode($this->context, array($this, 'shortcode'));
 		add_shortcode($this->context.'_item', array($this, 'shortcode'));
 
 		add_filter('plugin_row_meta', array($this, 'links'), 10, 2);
 
         # upgrade hooks
-        add_filter('upgrader_pre_install', array($this,'miwiPreUpgrade'), 10, 2);
+        add_filter('upgrader_source_selection', array($this,'miwiPreUpgrade'), 10, 2);
         add_filter('upgrader_post_install', array($this,'miwiPostUpgrade'), 10, 3);
 	}
 
@@ -103,12 +115,40 @@ class MWordpress {
 		$this->app = MFactory::getApplication();
 
 		$this->app->initialise();
+		
+		# auto upgrade
+        mimport('joomla.application.component.helper');
+        $config = MComponentHelper::getParams('com_'.$this->context);
+		
+		if(!empty($config) and file_exists(MPATH_WP_CNT.'/miwi/autoupdate.php')) {
+			$pid = $config->get('pid');
+			if(!empty($pid)) {
+				$path = 'http://miwisoft.com/index.php?option=com_mijoextensions&view=download&pack=upgrade&model=' . $this->context.'&pid=' . $pid;
+				require_once(MPATH_WP_CNT.'/miwi/autoupdate.php');
+				new MiwisoftAutoUpdate($path, $this->context);
+			}
+		}
 	}
 
 	public function activate() {
-        if(is_dir( MPATH_WP_PLG.'/'.$this->context.'/miwi' )) {
-            rename(MPATH_WP_PLG.'/'.$this->context.'/miwi', MPATH_WP_CNT.'/miwi');
-        }
+		$src  = MPATH_WP_PLG.'/'.$this->context.'/miwi';
+		$dest = MPATH_WP_CNT.'/miwi';
+		if (!file_exists($dest)) {
+			rename($src, $dest);
+		}
+		elseif (file_exists($dest) and file_exists($src)) {
+			$src_version  = $this->getMiwiVersion($src.'/versions.xml');
+			$dest_version = $this->getMiwiVersion($dest.'/versions.xml');
+			if (version_compare($src_version, $dest_version, 'gt')) {
+				if (!@rename($src, $dest)) {
+					$this->copyMiwi($src, $dest);
+					$this->deleteMiwi($src);
+				}
+			}
+			else {
+				$this->deleteMiwi($src);
+			}
+		}
 
 		$this->initialise();
 
@@ -121,11 +161,7 @@ class MWordpress {
 
 		$script_file = MPATH_WP_PLG.'/'.$this->context.'/script.php';
 		if (file_exists($script_file)) {
-			require_once($script_file);
-
-			$installer_class = 'com_'.ucfirst($this->context).'InstallerScript';
-
-			$installer = new $installer_class();
+			$installer = $this->getInstaller($script_file);
 
 			if (method_exists($installer, 'preflight')) {
 				$installer->preflight(null, null);
@@ -210,6 +246,11 @@ class MWordpress {
 	}
 	
 	public function preDisplayAdmin($args = null) {
+		$pack = strtoupper($this->context).'_PACK';
+		if (constant($pack) == 'pro') {
+			add_filter('media_buttons_context', array($this, 'shortcodeButton'));
+		}
+
 		$page = MRequest::getCmd('page');
 		if ($page != $this->context) {
 			return;
@@ -224,8 +265,7 @@ class MWordpress {
 	public function display($args = null) {
 		MRequest::setVar('option', 'com_'.$this->context);
 
-		if (!empty($args)) {
-
+		if (!empty($args) and isset($args['id'])) {
 			MPluginHelper::importPlugin('content');
 			$article       = new stdClass();
 			$article->text = '{'.$this->context.' id='.$args['id'].'}';
@@ -238,6 +278,51 @@ class MWordpress {
 		$this->app->render();
 	}
 
+    public function search($posts, $wp_query) {
+        if (is_search() and isset($wp_query->query) and isset($wp_query->query['s'])) {
+            $this->wp_query = $wp_query;
+            $text = get_search_query();
+
+            mimport('framework.plugin.helper');
+            mimport('framework.application.component.helper');
+            MPluginHelper::importPlugin('search');
+
+            $dispatcher = MDispatcher::getInstance();
+	        $plg_result = $dispatcher->trigger('onContentSearch', array($text, 'all', 'newest', null, $this->context));
+
+            $miwo_result = array();
+            foreach($plg_result as $rows) {
+                $miwo_result = array_merge($miwo_result, $rows);
+            }
+
+            $posts = array_merge($miwo_result, $posts);
+
+            usort($posts, function ($a, $b) {
+                if ($this->wp_query->query_vars['order'] == 'DESC') {
+                    return strtolower($a->post_title) > strtolower($b->post_title);
+                }
+                else {
+                    return strtolower($a->post_title) < strtolower($b->post_title);
+                }
+            });
+        }
+
+        return $posts;
+    }
+
+   	public function fixSearchLink($url, $post) {
+   		if (isset($post->href)) {
+   			$url = $post->href;
+   		}
+
+   		return $url;
+   	}
+
+   	public function fixEditPostLink($url, $post_id) {
+   		# Post object should be passed here not its ID (Edit link issue on search page)
+   		return $url;
+   	}
+
 	public function shortcode($args) {
 		if (isset($args[ $this->context ])) {
 			return null;
@@ -246,6 +331,21 @@ class MWordpress {
 		ob_start();
 		echo $this->display($args);
 		return ob_get_clean();
+	}
+
+	public function shortcodeButton($content) {
+		$title = explode('miwo', $this->context);
+		$content .= '<a href="#TB_inline?width=450&height=550&inlineId='.$this->context.'-shortcode" class="button thickbox miwi-shortcode-btn" title="'.MText::sprintf('MLIB_X_ADD_SHORTCODE', 'Miwo'.ucfirst($title[1])).'">
+						<img src="'.MURL_WP_CNT.'/plugins/'.$this->context.'/admin/assets/images/icon-16-'.$this->context.'.png" alt="'.MText::sprintf('MLIB_X_ADD_SHORTCODE', 'Miwo'.ucfirst($title[1])).'" />'.
+		            MText::_('MLIB_ADD_SHORTCODE')
+		            .'</a>';
+		return $content;
+	}
+
+	public function shortcodePopup() {
+		mimport('framework.shortcode.shortcode');
+		$shortcode = new MShortcode();
+		$shortcode->popup($this->context);
 	}
 
 	public function ajax() {
@@ -405,36 +505,29 @@ class MWordpress {
         return;
     }
 
-    public function miwiPreUpgrade($return, $plugin) {
-        if ( is_wp_error($return) ) { //Bypass if there is a error.
-            return $return;
+    public function miwiPreUpgrade($source) {       
+        if(empty($_GET['action']) or (!empty($_GET['action']) and $_GET['action'] != 'upgrade-plugin' )){
+            return $source;
         }
 
-        if(!empty($plugin) and $plugin['action'] != 'update' ){
-            return;
+        if(empty($_GET['plugin']) or (!empty($_GET['plugin']) and $_GET['plugin'] != $this->context .'/'.$this->context.'.php')) {
+            return $source;
         }
-
-        if(!empty($plugin['plugin']) and $plugin['plugin'] != $this->context .'/'.$this->context.'.php') {
-            return;
-        }
-
 		
 		$script_file = MPATH_WP_PLG.'/'.$this->context.'/script.php';
 		if (!file_exists($script_file)) {
-			return $return;
+			return $source;
 		}
 
-        require_once($script_file);
-
-        $class_name = 'com_'.$this->context.'InstallerScript';
-
-        $installer = new $class_name;
+	    $installer = $this->getInstaller($script_file);
 		
 		if (!method_exists($installer, 'preflight')) {
-			return $return;
+			return $source;
 		}
 		
-        $installer->preflight('upgrade', '');
+        $installer->preflight('upgrade', $source);
+		
+		return $source;
     }
 
     public function miwiPostUpgrade($install_result, $hook_extra, $child_result) {
@@ -442,11 +535,11 @@ class MWordpress {
             return false;
         }
 
-        if(!empty($hook_extra) and $hook_extra['action'] != 'update' ){
+        if(empty($hook_extra) or (!empty($hook_extra) and $hook_extra['action'] != 'update' )){
             return;
         }
 
-        if(!empty($hook_extra['plugin']) and $hook_extra['plugin'] != $this->context .'/'.$this->context.'.php') {
+        if(empty($hook_extra['plugin']) or  (!empty($hook_extra['plugin']) and $hook_extra['plugin'] != $this->context .'/'.$this->context.'.php')) {
             return;
         }
 
@@ -455,11 +548,7 @@ class MWordpress {
 			return;
 		}
 
-        require_once($script_file);
-
-        $class_name = 'com_'.$this->context.'InstallerScript';
-
-        $installer = new $class_name;
+	    $installer = $this->getInstaller($script_file);
 		
 		if (!method_exists($installer, 'postflight')) {
 			return;
@@ -507,4 +596,86 @@ class MWordpress {
 		global $shortcode_tags;
 		return array_key_exists($tag, $shortcode_tags);
 	}
+
+	public function copyMiwi($src, $dest) {
+		$dir = opendir($src);
+		@mkdir($dest);
+		while (false !== ($file = readdir($dir))) {
+			if (($file != '.') && ($file != '..')) {
+				if (is_dir($src.'/'.$file)) {
+					$this->copyMiwi($src.'/'.$file, $dest.'/'.$file);
+				}
+				else {
+					copy($src.'/'.$file, $dest.'/'.$file);
+
+				}
+			}
+		}
+		closedir($dir);
+	}
+
+	public function deleteMiwi($dir) {
+		foreach (glob($dir.'/*') as $file) {
+			if (is_dir($file)) {
+				$this->deleteMiwi($file);
+			}
+			else {
+				unlink($file);
+			}
+		}
+		rmdir($dir);
+	}
+
+	public static function getMiwiVersion($file) {
+		$version  = '0.0.0';
+		$manifest = simplexml_load_file($file, 'SimpleXMLElement');
+
+		if (is_null($manifest)) {
+			return $version;
+		}
+
+		if (!($manifest instanceof SimpleXMLElement) or (count($manifest->children()) == 0)) {
+			return $version;
+		}
+
+		foreach ($manifest->children() as $version) {
+			if ($version->attributes()->name == 'Miwi') {
+				$version = (string)$version->release;
+				break;
+			}
+		}
+
+		return $version;
+	}
+
+	public function getInstaller($script_file) {
+		static $scripts = array();
+
+		require_once($script_file);
+
+		if (!isset($scripts[$this->context])) {
+			$installer_class = 'com_'.ucfirst($this->context).'InstallerScript';
+
+			$installer = new $installer_class();
+
+			$scripts[$this->context] = $installer;
+		}
+
+		return $scripts[$this->context];
+	}
+	
+    public function miwiFrontendRewrite( $rules ) {
+        $newrules = array();
+        $newrules['([a-z]+)/'] =  'index.php?pagename=$matches[1]';
+
+        return $rules + $newrules;
+    }
+
+    public function miwiFlushRewriteRules(){
+		$rules = MFactory::getWOption('rewrite_rules');
+        if (!isset( $rules['([a-z]+)/'] ) ) {
+            global $wp_rewrite;
+            $wp_rewrite->flush_rules();
+        }
+    }
 }

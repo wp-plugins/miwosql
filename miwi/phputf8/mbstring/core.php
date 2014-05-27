@@ -13,14 +13,29 @@ if ( !defined('UTF8_CORE') ) {
 }
 
 function utf8_strlen($str){
-    return mb_strlen($str);
+	if(function_exists('mb_strlen')) {
+		return mb_strlen($str);
+	}
+	else {
+		return strlen($str);
+	}
 }
 
 function utf8_strpos($str, $search, $offset = FALSE){
     if ( $offset === FALSE ) {
-        return mb_strpos($str, $search);
+		if(function_exists('mb_strpos')) {
+			return mb_strpos($str, $search);
+		}
+		else {
+			return strpos($str, $search);
+		}
     } else {
-        return mb_strpos($str, $search, $offset);
+		if(function_exists('mb_strpos')) {
+			return mb_strpos($str, $search, $offset);
+		}
+		else {
+			return strpos($str, $search, $offset);
+		}
     }
 }
 
@@ -30,16 +45,35 @@ function utf8_strrpos($str, $search, $offset = FALSE){
         if ( empty($str) ) {
             return FALSE;
         }
-        return mb_strrpos($str, $search);
+		
+		if(function_exists('mb_strrpos')) {
+			return mb_strrpos($str, $search);
+		}
+		else {
+			return strrpos($str, $search);
+		}
+		
     } else {
         if ( !is_int($offset) ) {
             trigger_error('utf8_strrpos expects parameter 3 to be long',E_USER_WARNING);
             return FALSE;
         }
 
-        $str = mb_substr($str, $offset);
+		if(function_exists('mb_substr')) {
+			$str = mb_substr($str, $offset);
+		}
+		else {
+			$str = substr($str, $offset);
+		}
+		
+		if(function_exists('mb_strrpos')) {
+			$pos = mb_strrpos($str, $search);
+		}
+		else {
+			$pos = strrpos($str, $search);
+		}
 
-        if ( FALSE !== ( $pos = mb_strrpos($str, $search) ) ) {
+        if ( FALSE !== $pos ) {
             return $pos + $offset;
         }
 
@@ -49,16 +83,36 @@ function utf8_strrpos($str, $search, $offset = FALSE){
 
 function utf8_substr($str, $offset, $length = FALSE){
     if ( $length === FALSE ) {
-        return mb_substr($str, $offset);
+		if(function_exists('mb_substr')) {
+			return mb_substr($str, $offset);
+		}
+		else {
+			return substr($str, $offset);
+		}
     } else {
-        return mb_substr($str, $offset, $length);
+		if(function_exists('mb_substr')) {
+			return mb_substr($str, $offset, $length);
+		}
+		else {
+			return substr($str, $offset, $length);
+		}		
     }
 }
 
 function utf8_strtolower($str){
-    return mb_strtolower($str);
+	if(function_exists('mb_strtolower')) {
+		return mb_strtolower($str);
+	}
+	else {
+		return strtolower($str);
+	}
 }
 
 function utf8_strtoupper($str){
-    return mb_strtoupper($str);
+	if(function_exists('mb_strtoupper')) {
+		return mb_strtoupper($str);
+	}
+	else {
+		return strtoupper($str);
+	}
 }

@@ -52,7 +52,7 @@ class MiwisoftAutoUpdate {
     }
 
     public function check_info($false, $action, $arg) {
-        if ($arg->slug === $this->slug) {
+        if (isset($arg->slug) and $arg->slug === $this->slug) {
             $args       = (object) array( 'slug' => $this->slug);
             $request    = array( 'action' => 'plugin_information', 'timeout' => 15, 'request' => serialize( $args) );
             $url        = 'http://api.wordpress.org/plugins/info/1.0/';

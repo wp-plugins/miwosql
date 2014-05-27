@@ -225,7 +225,7 @@ ul.tablenav {
 }
 
 #editcell .tablenav > li {
-display : inline-block;
+    display : inline-block;
 }
 
 .pagination_link {
@@ -240,96 +240,97 @@ display : inline-block;
 .pagination_link.active:hover {
     color      : #FFFFFF;
     background : #2EA2CC;
-	cursor	   : pointer;
+    cursor     : pointer;
 }
 
 /* Adminform */
 
 /* -- PANE SLIDER STYLES ----------------------------- */
 .pane-sliders {
-    margin: 18px 0 0 0;
-    position:relative;
+    margin   : 18px 0 0 0;
+    position : relative;
 }
+
 .pane-sliders .title {
-    margin: 0;
-    padding: 2px 2px 2px 5px;
-    color: #666;
-    cursor: pointer;
+    margin  : 0;
+    padding : 2px 2px 2px 5px;
+    color   : #666666;
+    cursor  : pointer;
 }
 
 #content-pane {
-    margin: 8px 10px 15px 15px;
+    margin : 8px 10px 15px 15px;
 }
 
 .pane-sliders .panel {
-    margin-bottom: 3px;
-    border:solid 1px #ccc;
+    margin-bottom : 3px;
+    border        : solid 1px #CCCCCC;
 }
 
 .pane-sliders .panel h3 {
-    background: #fafafa;
-    color: #666;
+    background : #FAFAFA;
+    color      : #666666;
 }
 
 .pane-sliders .content {
-    background: #fff;
+    background : #FFFFFF;
 }
 
 .pane-sliders .adminlist {
-    border: 0 none;
-    font-size: 1em;
+    border    : 0 none;
+    font-size : 1em;
 }
 
 .pane-sliders .adminlist td {
-    border: 0 none;
+    border : 0 none;
 }
 
 .pane-toggler span {
-    background: transparent url(../images/j_arrow.png) 5px 50% no-repeat;
-    padding-left: 20px;
+    background   : transparent url(../images/j_arrow.png) 5px 50% no-repeat;
+    padding-left : 20px;
 }
 
 .pane-toggler-down span {
-    background: transparent url(../images/j_arrow_down.png) 5px 50% no-repeat;
-    padding-left: 20px;
+    background   : transparent url(../images/j_arrow_down.png) 5px 50% no-repeat;
+    padding-left : 20px;
 }
 
 .pane-toggler-down {
-    border-bottom: 1px solid #ccc;
+    border-bottom : 1px solid #CCCCCC;
 }
 
 h3.pane-toggler-down a:hover,
 h3.pane-toggler a:hover {
-    text-decoration: none;
+    text-decoration : none;
 }
 
 .pane-slider.pane-hide {
-    display: none;
+    display : none;
 }
 
 .pane-slider ol li {
-    list-style: none;
-    margin-left: -25px;
-    margin-top: 10px;
+    list-style  : none;
+    margin-left : -25px;
+    margin-top  : 10px;
 }
 
 input#mformparams_link_titles1,
 input#mformparams_show_title1,
 input#mformparams_link_category1 {
-    margin-left: 13px;
+    margin-left : 13px;
 }
 
 div#position-icon.pane-sliders div.pane-down div.icon-wrapper {
-    margin: 5px 0 5px 0;
+    margin : 5px 0 5px 0;
 }
 
 div#position-icon.pane-sliders div.pane-down .icon-wrapper .icon {
-    padding: 5px 0 5px 10px;
-    margin: 0;
+    padding : 5px 0 5px 10px;
+    margin  : 0;
 }
 
 div#position-icon.pane-sliders .icon {
-    background: #fff;
+    background : #FFFFFF;
 }
 
 .mgrid span.uparrow {
@@ -341,10 +342,10 @@ div#position-icon.pane-sliders .icon {
 }
 
 .mgrid span.state {
-    display 			: inline-block;
-    height				: 13px;
-	width				: 16px;
-	background-repeat	: no-repeat;
+    display           : inline-block;
+    height            : 13px;
+    width             : 16px;
+    background-repeat : no-repeat;
 }
 
 .mgrid span.text {
@@ -353,8 +354,22 @@ div#position-icon.pane-sliders .icon {
 
 /* Pro Members Message */
 .miwi_paid {
-    background-color: #FFFFE0;
-    border: 1px solid #000;
-    padding: 10px;
+    background-color : #FFFFE0;
+    border           : 1px solid #000000;
+    padding          : 10px;
 }
+
 /* Pro Members Message */
+
+.miwi-shortcode-btn img {
+    padding : 0 4px 3px 4px !important;
+}
+
+.miwi_shortcode_view {
+    padding : 10px;
+}
+
+.miwi_shortcode_fields {
+    padding    : 10px;
+    list-style : none;
+}
