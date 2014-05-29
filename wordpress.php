@@ -49,6 +49,7 @@ class MWordpress {
 			add_action('parse_query', array($this, 'parse'));
 			add_action('wp_head', array($this, 'metadata'));
 			add_action('get_header', array($this, 'preDisplay'));
+			add_action('get_header', array($this, 'modulePreDisplay'));
             add_action('wp_enqueue_scripts', array($this,'safelyAddScript'),999);
             add_action('wp_enqueue_scripts', array($this,'safelyAddStylesheet'), 999 );
 		}
@@ -211,6 +212,36 @@ class MWordpress {
 		}
 	}
 
+    public function modulePreDisplay(){
+        # check
+        $option = MRequest::getCmd('option');
+        if(!empty($option)) {
+            return;
+        }
+
+        # get all sidebar widgets
+        $sidebars_widgets = wp_get_sidebars_widgets();
+        unset($sidebars_widgets['wp_inactive_widgets']);
+
+        # get all miwi modules
+        mimport( 'framework.application.module.helper' );
+        $modules = MModuleHelper::getModules();
+
+        # load sidebar modules
+        foreach($modules as $module){
+            foreach($sidebars_widgets as $_sidebars_widgets){
+
+                $is_in = preg_grep("/".$module->id."./", $_sidebars_widgets);
+
+                if(!empty($is_in)) {
+                    MModuleHelper::renderModule($module);
+                    $loaded[$module->id] = $module->id;
+                    break;
+                }
+            }
+        }
+    }
+
 	public function preDisplay() {
 		$option = MRequest::getCmd('option');
 		if ($option != 'com_'.$this->context) {
@@ -278,37 +309,41 @@ class MWordpress {
 		$this->app->render();
 	}
 
-    public function search($posts, $wp_query) {
-        if (is_search() and isset($wp_query->query) and isset($wp_query->query['s'])) {
-            $this->wp_query = $wp_query;
-            $text = get_search_query();
+	public function search($posts, $wp_query) {
+		if (!is_search() or !isset($wp_query->query) or !isset($wp_query->query['s'])) {
+			return $posts;
+		}
 
-            mimport('framework.plugin.helper');
-            mimport('framework.application.component.helper');
-            MPluginHelper::importPlugin('search');
+		$this->wp_query = $wp_query;
+		$text = get_search_query();
 
-            $dispatcher = MDispatcher::getInstance();
-	        $plg_result = $dispatcher->trigger('onContentSearch', array($text, 'all', 'newest', null, $this->context));
+		mimport('framework.plugin.helper');
+		mimport('framework.application.component.helper');
+		MPluginHelper::importPlugin('search');
 
-            $miwo_result = array();
-            foreach($plg_result as $rows) {
-                $miwo_result = array_merge($miwo_result, $rows);
-            }
+		$dispatcher = MDispatcher::getInstance();
+		$plg_result = $dispatcher->trigger('onContentSearch', array($text, 'all', 'newest', null, $this->context));
 
-            $posts = array_merge($miwo_result, $posts);
+		$miwo_result = array();
+		foreach($plg_result as $rows) {
+			$miwo_result = array_merge($miwo_result, $rows);
+		}
 
-            usort($posts, function ($a, $b) {
-                if ($this->wp_query->query_vars['order'] == 'DESC') {
-                    return strtolower($a->post_title) > strtolower($b->post_title);
-                }
-                else {
-                    return strtolower($a->post_title) < strtolower($b->post_title);
-                }
-            });
-        }
+		$posts = array_merge($miwo_result, $posts);
 
-        return $posts;
-    }
+		usort($posts, array('MWordpress', '_sortResult'));
+
+		return $posts;
+	}
+
+	protected function _sortResult($a, $b) {
+		if ($this->wp_query->query_vars['order'] == 'DESC') {
+			return strtolower($a->post_title) > strtolower($b->post_title);
+		}
+		else {
+			return strtolower($a->post_title) < strtolower($b->post_title);
+		}
+	}
 
    	public function fixSearchLink($url, $post) {
    		if (isset($post->href)) {

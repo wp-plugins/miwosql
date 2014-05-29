@@ -4,7 +4,7 @@ Plugin Name: MiwoSQL
 Plugin URI: http://miwisoft.com
 Description: MiwoSQL is a simple and fast database management component. It operates executing SQL queries so you don't have to access phpMyAdmin anymore.
 Author: Miwisoft LLC
-Version: 1.0.4
+Version: 1.0.5
 Author URI: http://miwisoft.com
 Plugin URI: http://miwisoft.com/wordpress-plugins/miwosql-wordpress-database-manager
 */
