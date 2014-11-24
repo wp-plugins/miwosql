@@ -3,9 +3,9 @@
 * @version		1.0.0
 * @package		MiwoSQL
 * @subpackage	MiwoSQL
-* @copyright	Copyright (C) 2009-2014 Miwisoft, LLC. All rights reserved.
-* @license		GNU General Public License version 2 or later
-*
+* @copyright	2009-2012 Mijosoft LLC, www.mijosoft.com
+* @license		GNU/GPL http://www.gnu.org/copyleft/gpl.html
+* @license		GNU/GPL based on AceSQL www.joomace.net
 *
 * Based on EasySQL Component
 * @copyright (C) 2008 - 2011 Serebro All rights reserved
@@ -290,11 +290,11 @@ class MiwosqlModelMiwosql extends MiwosqlModel {
 
 					$body .= '<td align="left" nowrap>';
 						$body .= '<a href="'.$edit_link.'">';
-							$body .= '<img border="0" src="'.MURL_MIWOSQL.'/admin/assets/images/icon-16-edit.png'.'" alt="'.MText::_('COM_MIWOSQL_EDIT').'" title="'.MText::_('COM_MIWOSQL_EDIT').'" />';
+							$body .= '<img border="0" src="'.MURL_MIWOSQL.'/admin/assets/images/icon-16-edit.png" alt="'.MText::_('COM_MIWOSQL_EDIT').'" title="'.MText::_('COM_MIWOSQL_EDIT').'" />';
 						$body .= '</a>';
 						$body .= '&nbsp;';
 						$body .= '<a href="#" onclick="if (confirm(\'Are you sure you want to delete this record?\')) {this.href=\''.$delete_link.'\'};">';
-							$body .= '<img border="0" src="'.MURL_MIWOSQL.'/admin/assets/images/icon-16-delete.png'.'" alt="'.MText::_('COM_MIWOSQL_DELETE').'" title="'.MText::_('COM_MIWOSQL_DELETE').'" />';
+							$body .= '<img border="0" src="'.MURL_MIWOSQL.'/admin/assets/images/icon-16-delete.png" alt="'.MText::_('COM_MIWOSQL_DELETE').'" title="'.MText::_('COM_MIWOSQL_DELETE').'" />';
 						$body .= '</a>';
 					$body .= '</td>';
 				}

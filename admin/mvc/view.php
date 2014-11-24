@@ -2,7 +2,7 @@
 /*
 * @package		MiwoSQL
 * @copyright	2009-2012 Mijosoft LLC, mijosoft.com
-* @license		GNU General Public License version 2 or later
+* @license		GNU/GPL http://www.gnu.org/copyleft/gpl.html
 */
 
 // No Permission

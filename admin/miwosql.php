@@ -1,8 +1,8 @@
 <?php
 /**
 * @package		MiwoSQL
-* @copyright	Copyright (C) 2009-2014 Miwisoft, LLC. All rights reserved.
-* @license		GNU General Public License version 2 or later
+* @copyright	2009-2012 Mijosoft LLC, www.mijosoft.com
+* @license		GNU/GPL http://www.gnu.org/copyleft/gpl.html
 */
 
 // no direct access
@@ -40,4 +40,4 @@ $controller = new $classname();
 $controller->execute(MRequest::getCmd('task'));
 $controller->redirect();
 
-echo '<div style="margin: 10px; text-align: center;"><a style="text-decoration: none;" href="http://miwisoft.com/wordpress-plugins/miwosql" target="_blank">MiwoSQL | Copyright &copy; 2009-2014 Miwisoft LLC</a></div>';
+echo '<div style="margin: 10px; text-align: center;"><a href="http://miwisoft.com/wordpress-plugins/miwosql" target="_blank">MiwoSQL | Copyright &copy; 2009-2014 Miwisoft LLC</a></div>';

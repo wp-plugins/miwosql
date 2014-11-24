@@ -59,7 +59,7 @@ abstract class MFactory {
 
     public static function getWOption($name, $default = false, $id = null) {
 		$data = null;
-        $opt = get_site_option($name);
+        $opt = get_option($name);
 
         if (is_string($opt)) {
             $data = $opt;
@@ -124,22 +124,7 @@ abstract class MFactory {
     }
 
     public static function getUser($id = null) {
-        if (is_null($id)) {
-            $instance = self::getSession()->get('user');
-            if (!($instance instanceof MUser)) {
-                $instance = MUser::getInstance();
-            }
-        }
-        else {
-            $current = self::getSession()->get('user');
-            if ($current->id != $id) {
-                $instance = MUser::getInstance($id);
-            }
-            else {
-                $instance = self::getSession()->get('user');
-            }
-        }
-
+	    $instance = MUser::getInstance($id);
         return $instance;
     }
 
@@ -358,7 +343,9 @@ abstract class MFactory {
         $handler = $conf->get('session_handler', 'none');
 
         // Config time is in minutes
-        $options['expire'] = ($conf->get('lifetime')) ? $conf->get('lifetime') * 60 : 900;
+        //$options['id']      = 'miwisoft';
+        $options['name']    = '_miwisoft';
+        $options['expire']  = ($conf->get('lifetime')) ? $conf->get('lifetime') * 60 : 900;
 
         $session = MSession::getInstance($handler, $options);
         if ($session->getState() == 'expired') {
@@ -408,7 +395,9 @@ abstract class MFactory {
     }
 
     protected static function createMailer() {
-        return MFactory::get('mail');
+        MLoader::register('MMail', MPATH_MIWI .'/proxy/mail/mail.php');
+	    $mail = new MMail();
+        return $mail;
     }
 
     protected static function createLanguage() {

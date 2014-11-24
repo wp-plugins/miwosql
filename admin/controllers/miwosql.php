@@ -3,9 +3,9 @@
 * @version		1.0.0
 * @package		MiwoSQL
 * @subpackage	MiwoSQL
-* @copyright	Copyright (C) 2009-2014 Miwisoft, LLC. All rights reserved.
-* @license		GNU General Public License version 2 or later
-*
+* @copyright	2009-2012 Mijosoft LLC, www.mijosoft.com
+* @license		GNU/GPL http://www.gnu.org/copyleft/gpl.html
+* @license		GNU/GPL based on AceSQL www.joomace.net
 *
 * Based on EasySQL Component
 * @copyright (C) 2008 - 2011 Serebro All rights reserved

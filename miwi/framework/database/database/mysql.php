@@ -272,6 +272,14 @@ class MDatabaseMySQL extends MDatabase {
         $this->errorNum = 0;
         $this->errorMsg = '';
 
+		#for-multi-db
+        global $wpdb;
+        $multidb_file = MPATH_WP_CNT . '/db.php';
+        if(!empty($wpdb) and file_exists($multidb_file)){
+            $this->connection = $wpdb->db_connect($sql); #for-multi-db
+            $sql = $wpdb->sanitize_multidb_query_tables($sql);
+        }
+		
         // Execute the query.
         $this->cursor = mysql_query($sql, $this->connection);
 

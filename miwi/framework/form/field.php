@@ -6,6 +6,9 @@
 * @license		GNU General Public License version 2 or later
 */
 
+
+
+
 defined('MIWI') or die('MIWI');
 
 abstract class MFormField extends MObject {
@@ -114,6 +117,9 @@ abstract class MFormField extends MObject {
         // Set the XML element object.
         $this->element = $element;
 
+
+
+
         // Get some important attributes from the form field element.
         $class    = (string)$element['class'];
         $id       = (string)$element['id'];
@@ -139,6 +145,7 @@ abstract class MFormField extends MObject {
 
         // Set the multiple values option.
         $this->multiple = ($multiple == 'true' || $multiple == 'multiple');
+
 
         // Allow for field classes to force the multiple values option.
         if (isset($this->forceMultiple)) {
@@ -215,12 +222,16 @@ abstract class MFormField extends MObject {
 
         if ($this->hidden) {
 
+
+
             return $title;
         }
 
         // Get the label text from the XML element, defaulting to the element name.
         $title = $this->element['label'] ? (string)$this->element['label'] : (string)$this->element['name'];
         $title = $this->translateLabel ? MText::_($title) : $title;
+
+
 
         return $title;
     }
@@ -316,5 +327,9 @@ abstract class MFormField extends MObject {
 
             return self::$generated_fieldname . self::$count;
         }
+    }
+
+	public function setValue($value) {
+        $this->value = $value;
     }
 }

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <install type="component" version="1.5.0" method="upgrade">
 	<name>MiwoSQL</name>
-	<author>Miwisoft LLC</author>
-	<creationDate>May 2014</creationDate>
-	<authorEmail>info@miwisoft.com</authorEmail>
-	<authorUrl>http://miwisoft.com</authorUrl>
-	<copyright>Copyright (C) Miwisoft LLC, miwisoft.com</copyright>
+	<author>Mijosoft LLC</author>
+	<creationDate>October 2012</creationDate>
+	<authorEmail>info@mijosoft.com</authorEmail>
+	<authorUrl>http://mijosoft.com</authorUrl>
+	<copyright>Copyright (C) Mijosoft LLC, mijosoft.com</copyright>
 	<license>GNU/GPL, http://www.gnu.org/licenses/gpl-2.0.html</license>
-	<version>1.0.5</version>
+	<version>1.0.6</version>
 	<description>MiwoSQL is a simple and fast database management component. It operates executing SQL queries so you don't have to access phpMyAdmin anymore.</description>
 	
 	<administration>

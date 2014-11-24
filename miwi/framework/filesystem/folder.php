@@ -161,7 +161,7 @@ abstract class MFolder {
 
             // If open_basedir is set we need to get the open_basedir that the path is in
             if ($obd != null) {
-                if (MPath_ISWIN) {
+                if (MPATH_ISWIN) {
                     $obdSeparator = ";";
                 }
                 else {

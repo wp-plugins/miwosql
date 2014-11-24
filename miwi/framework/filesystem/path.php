@@ -8,6 +8,22 @@
 
 defined('MIWI') or die('MIWI');
 
+// Define a boolean constant as true if a Windows based host
+define('MPATH_ISWIN', (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN'));
+
+// Define a boolean constant as true if a Mac based host
+define('MPATH_ISMAC', (strtoupper(substr(PHP_OS, 0, 3)) === 'MAC'));
+
+if (!defined('DS')) {
+	// Define a string constant shortcut for the DIRECTORY_SEPARATOR define
+	define('DS', DIRECTORY_SEPARATOR);
+}
+
+if (!defined('MPATH_ROOT')) {
+	// Define a string constant for the root directory of the file system in native format
+	define('MPATH_ROOT', MPath::clean(MPATH_SITE));
+}
+
 class MPath {
 
 	public static function canChmod($path) {

@@ -86,7 +86,7 @@ class MShortcode {
 
 		//@TODO : Do not forget that delete "com_" string
 		if (is_dir(MPATH_THEMES.'/'.$tmpl.'/html/com_'.$plugin.'/'.$view)) {
-			$templateLayouts = MFolder::files(MPATH_THEMES.'/'.$tmpl.'/html/com_'.$plugin.'/'.$layout, '.xml$', false, true);
+			$templateLayouts = MFolder::files(MPATH_THEMES.'/'.$tmpl.'/html/com_'.$plugin.'/'.$view, '.xml$', false, true);
 
 			foreach ($templateLayouts as $templateLayout) {
 				// Get the layout name.

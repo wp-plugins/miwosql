@@ -4,7 +4,7 @@ Plugin Name: MiwoSQL
 Plugin URI: http://miwisoft.com
 Description: MiwoSQL is a simple and fast database management component. It operates executing SQL queries so you don't have to access phpMyAdmin anymore.
 Author: Miwisoft LLC
-Version: 1.0.5
+Version: 1.0.6
 Author URI: http://miwisoft.com
 Plugin URI: http://miwisoft.com/wordpress-plugins/miwosql-wordpress-database-manager
 */
@@ -18,14 +18,14 @@ if (!class_exists('MWordpress')) {
 final class MiSQL extends MWordpress {
 
     public function __construct() {
-		if (!defined('MURL_MIWOSQL')) {
-			define('MURL_MIWOSQL', plugins_url('', __FILE__));
-		}
-		
-		if (!defined('MIWOSQL_PACK')) {
+	    if (!defined('MURL_MIWOSQL')) {
+		    define('MURL_MIWOSQL', plugins_url('', __FILE__));
+	    }
+
+	    if (!defined('MIWOSQL_PACK')) {
 		    define('MIWOSQL_PACK', 'lite');
 	    }
-		
+
         parent::__construct('miwosql', '33.0098', false);
     }
 
@@ -43,15 +43,16 @@ final class MiSQL extends MWordpress {
         $this->app->initialise();
 
 		#cvs export start
-        $option = MRequest::getCmd('option');
-        $task = MRequest::getCmd('task');
+        $option = MRequest::getString('option');
+        $task = MRequest::getString('task');
 
-        if(($option == 'com_miwosql') and ($task == 'csv')) {
+        if(!empty($task) and !empty($option) and $task == 'csv' and $option == 'com_miwosql') {
 			MFactory::getLanguage()->load('com_'.$this->context, MPATH_ADMINISTRATOR);
             MComponentHelper::renderComponent('com_miwosql');
         }
 		#cvs export end
     }
+
 }
 
 $misql = new MiSQL();

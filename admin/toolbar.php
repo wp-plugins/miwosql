@@ -1,8 +1,8 @@
 <?php
 /**
 * @package		MiwoSQL
-* @copyright	Copyright (C) 2009-2014 Miwisoft, LLC. All rights reserved.
-* @license		GNU General Public License version 2 or later
+* @copyright	2009-2012 Mijosoft LLC, www.mijosoft.com
+* @license		GNU/GPL http://www.gnu.org/copyleft/gpl.html
 */
 
 // No Permission

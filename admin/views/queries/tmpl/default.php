@@ -3,9 +3,9 @@
 * @version		1.0.0
 * @package		MiwoSQL
 * @subpackage	MiwoSQL
-* @copyright	Copyright (C) 2009-2014 Miwisoft, LLC. All rights reserved.
-* @license		GNU General Public License version 2 or later
-*
+* @copyright	2009-2012 Mijosoft LLC, www.mijosoft.com
+* @license		GNU/GPL http://www.gnu.org/copyleft/gpl.html
+* @license		GNU/GPL based on AceSQL www.joomace.net
 */
 
 defined('MIWI') or die('Restricted access'); ?>
@@ -69,7 +69,7 @@ defined('MIWI') or die('Restricted access'); ?>
                     <?php echo $row->id; ?>
                 </td>
                 <td align="center">
-                    <a href="<?php echo $run_link; ?>"><img src="<?php echo MURL_MIWOSQL.'/admin/assets/images/icon-16-run.png'; ?>" width="16px" height="16px" style="vertical-align:middle;" alt="<?php echo MText::_('COM_MIWOSQL_RUN_QUERY'); ?>" title="<?php echo MText::_('COM_MIWOSQL_RUN_QUERY'); ?>" /> </a>
+                    <a href="<?php echo $run_link; ?>"><img src="<?php echo MURL_MIWOSQL; ?>/admin/assets/images/icon-16-run.png" width="16px" height="16px" style="vertical-align:middle;" alt="<?php echo MText::_('COM_MIWOSQL_RUN_QUERY'); ?>" title="<?php echo MText::_('COM_MIWOSQL_RUN_QUERY'); ?>" /> </a>
                 </td>
                 <td>
 					<a href="<?php echo $edit_link; ?>"><?php echo $row->title; ?></a>

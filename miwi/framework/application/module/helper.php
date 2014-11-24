@@ -52,10 +52,13 @@ abstract class MModuleHelper {
 
 		$modules = MModuleHelper::_load();
 
-		$total = count($modules);
-		for ($i = 0; $i < $total; $i++) {
-			if (($position == null) or ($modules[$i]->position == $position)) {
-				$result[] = $modules[$i];
+		if (!is_array($modules)) {
+			return $result;
+		}
+
+		foreach ($modules as $module) {
+			if (($position == null) or ($module->position == $position)) {
+				$result[] = $module;
 			}
 		}
 

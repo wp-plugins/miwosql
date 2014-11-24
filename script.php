@@ -1,8 +1,8 @@
 <?php
 /*
 * @package		MiwoSQL
-* @copyright	Copyright (C) 2009-2014 Miwisoft, LLC. All rights reserved.
-* @license		GNU General Public License version 2 or later
+* @copyright	2009-2012 Mijosoft LLC, www.mijosoft.com
+* @license		GNU/GPL http://www.gnu.org/copyleft/gpl.html
 */
 
 // No Permission
@@ -14,8 +14,8 @@ mimport('framework.filesystem.folder');
 class com_MiwosqlInstallerScript {
 	
 	public function postflight($type, $parent) {
-		if (MFolder::copy(MPath::clean(MPATH_WP_PLG . '/miwosql/languages'), MPath::clean(MPATH_MIWI . '/languages'), null, true)) {
-			MFolder::delete(MPath::clean(MPATH_WP_PLG . '/miwosql/languages'));
+		if (MFolder::copy(MPath::clean(MPATH_WP_PLG.'/miwosql/languages'), MPath::clean(MPATH_WP_CNT.'/miwi/languages'), null, true)) {
+			MFolder::delete(MPath::clean(MPATH_WP_PLG.'/miwosql/languages'));
 		}
     }
 }

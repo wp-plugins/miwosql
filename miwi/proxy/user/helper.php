@@ -71,7 +71,7 @@ abstract class MUserHelper {
     }
 
     public static function genRandomPassword($length = 8) {
-
+        return wp_generate_password($length, false);
     }
 
     protected static function _toAPRMD5($value, $count) {

@@ -110,6 +110,11 @@ class MApplication extends MObject {
         if (isset($options['language'])) {
             $config->set('language', $options['language']);
         }
+		
+		#for-multi-db
+        if(!defined('COOKIEHASH')) {
+            wp_cookie_constants();
+        }
 
         // Set user specific editor.
         $user   = MFactory::getUser();
@@ -137,7 +142,7 @@ class MApplication extends MObject {
 
         $vars = $this->parse($component);
 
-        MRequest::set($vars, 'get', false);
+        MRequest::set($vars, 'get', MFactory::getApplication()->isSite() ? true : false);
 
         // Trigger the onAfterRoute event.
         MPluginHelper::importPlugin('system');
@@ -532,6 +537,9 @@ class MApplication extends MObject {
     }
 
     public function getTemplate($params = false) {
+        if ($this->isAdmin()) {
+            return null;
+        }
         $template = new stdClass();
         $template->template = wp_get_theme()->template;
         $template->params = new MRegistry();
@@ -623,11 +631,16 @@ class MApplication extends MObject {
     }
 
     protected function _createSession($name) {
-        return null;
-    }
+	    $options         = array();
+	    $options['name'] = $name;
+	    $session = MFactory::getSession($options);
 
-    public function checkSession() {
-        
+	    if ($session->isNew()) {
+		    $session->set('registry', new MRegistry('session'));
+	    }
+
+
+	    return $session;
     }
 
     public function getClientId() {
